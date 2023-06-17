@@ -10,12 +10,14 @@ namespace Player
     public class PlayerInteraction : MonoBehaviour
     {
         public GameObject buttonPopUp;
-        public Ease inEase;
-        public Ease outEase;
         public string[] tagsToLook;
 
         [Header("Animation")] 
         public float animationDuration = 1f;
+        public Ease inEase;
+        public Ease outEase;
+
+        [SerializeField] bool canInteract = false;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -26,8 +28,8 @@ namespace Player
 
                     if (collision.transform.GetComponent<IInteractable>() != null)
                     {
+                        collision.transform.GetComponent<IInteractable>().Interactable();
                         StartCoroutine(InsideInteractionRange(collision.GetComponent<Collider2D>()));
-                        
                     }
 
                     if (collision.transform.GetComponent<ICollectable>() != null)
@@ -44,15 +46,12 @@ namespace Player
             buttonPopUp.SetActive(true);
             buttonPopUp.transform.DOScale(Vector2.one, animationDuration).SetEase(inEase);
 
-                Debug.Log("cu");
-            if(Input.GetKey(KeyCode.E))
-            {
-                Debug.Log("ue");
-                ShopManager.Instance.ShowShop();
-            }
+            canInteract = true;            
 
             yield return new WaitWhile(() => GetComponent<Collider2D>().IsTouching(collider2D));
 
+            canInteract = false;           
+            
             buttonPopUp.transform.DOScale(Vector2.zero, animationDuration).SetEase(outEase);
 
             yield return new WaitForSeconds(animationDuration);
@@ -60,6 +59,11 @@ namespace Player
             buttonPopUp.SetActive(false);
         }
 
+        private void Update()
+        {
+            if (canInteract && Input.GetKeyDown(KeyCode.E))
+                ShopManager.Instance.ShowShop();
+        }
     }
 
 }

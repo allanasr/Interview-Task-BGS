@@ -11,13 +11,17 @@ namespace Currency
         [SerializeField] int coinCounter;
         [SerializeField] int diamondCounter;
         [SerializeField] TMP_Text coinCounterTxt;
+        [SerializeField] TMP_Text shopCoinCounterTxt;
         [SerializeField] TMP_Text diamondCounterTxt;
+        [SerializeField] TMP_Text shopDiamondCounterTxt;
 
         protected override void Awake()
         {
             base.Awake();
             coinCounterTxt = GameObject.FindGameObjectWithTag("CoinCounter").GetComponent<TMP_Text>();
+            shopCoinCounterTxt = GameObject.FindGameObjectWithTag("ShopCoinCounter").GetComponent<TMP_Text>();
             diamondCounterTxt = GameObject.FindGameObjectWithTag("DiamondCounter").GetComponent<TMP_Text>();
+            shopDiamondCounterTxt = GameObject.FindGameObjectWithTag("ShopDiamondCounter").GetComponent<TMP_Text>();
         }
 
         public void AddCollectable(string tag)
@@ -31,6 +35,34 @@ namespace Currency
         {
             coinCounterTxt.text = coinCounter.ToString();
             diamondCounterTxt.text = diamondCounter.ToString();
+        }
+
+        public void UpdateShopCounter()
+        {
+            shopCoinCounterTxt.text = coinCounter.ToString();
+            shopDiamondCounterTxt.text = diamondCounter.ToString();
+        }
+
+        public int GetDiamondAmount()
+        {
+            return diamondCounter;
+        }
+
+        public int GetCoinAmount()
+        {
+            return coinCounter;
+        }
+
+        public void SetDiamondCounter(int value)
+        {
+            diamondCounter = value;
+            UpdateShopCounter();
+        }
+
+        public void SetCoinCounter(int value)
+        {
+            coinCounter = value;
+            UpdateShopCounter();
         }
     }
 }

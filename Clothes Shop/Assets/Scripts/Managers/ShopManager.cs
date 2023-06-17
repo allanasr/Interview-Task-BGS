@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Singleton;
+using Currency;
 
 namespace Shop
 {
@@ -24,6 +25,15 @@ namespace Shop
         public void ShowShop()
         {
             shopCanvas.SetActive(true);
+            CurrencyManager.Instance.UpdateShopCounter();
         }
+
+        public void CloseShop()
+        {
+            shopCanvas.SetActive(false);
+            Time.timeScale = 1;
+            CurrencyManager.Instance.UpdateCounter();
+        }
+
     }
 }

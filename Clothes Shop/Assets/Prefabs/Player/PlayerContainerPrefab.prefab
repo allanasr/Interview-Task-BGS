@@ -404,12 +404,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPopUp: {fileID: 1560763656110845264}
-  ease: 30
   tagsToLook:
   - Shopkeeper
   - Coin
   - Diamond
-  animationDuration: 1
+  animationDuration: 0.5
+  inEase: 30
+  outEase: 27
+  canInteract: 0
 --- !u!61 &4194693847872906388
 BoxCollider2D:
   m_ObjectHideFlags: 0
