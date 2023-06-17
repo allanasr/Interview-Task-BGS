@@ -33,14 +33,8 @@ namespace Currency
 
         public void UpdateCounter()
         {
-            coinCounterTxt.text = coinCounter.ToString();
-            diamondCounterTxt.text = diamondCounter.ToString();
-        }
-
-        public void UpdateShopCounter()
-        {
-            shopCoinCounterTxt.text = coinCounter.ToString();
-            shopDiamondCounterTxt.text = diamondCounter.ToString();
+            coinCounterTxt.text = shopCoinCounterTxt.text = coinCounter.ToString();
+            diamondCounterTxt.text = shopDiamondCounterTxt.text = diamondCounter.ToString();
         }
 
         public int GetDiamondAmount()
@@ -56,13 +50,13 @@ namespace Currency
         public void SetDiamondCounter(int value)
         {
             diamondCounter = value;
-            UpdateShopCounter();
+            UpdateCounter();
         }
 
         public void SetCoinCounter(int value)
         {
             coinCounter = value;
-            UpdateShopCounter();
+            UpdateCounter();
         }
     }
 }

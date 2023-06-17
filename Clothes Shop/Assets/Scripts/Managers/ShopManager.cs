@@ -25,7 +25,7 @@ namespace Shop
         public void ShowShop()
         {
             shopCanvas.SetActive(true);
-            CurrencyManager.Instance.UpdateShopCounter();
+            CurrencyManager.Instance.UpdateCounter();
         }
 
         public void CloseShop()

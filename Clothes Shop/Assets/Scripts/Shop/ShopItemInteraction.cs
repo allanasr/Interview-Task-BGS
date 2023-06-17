@@ -26,7 +26,7 @@ namespace Shop
         public void BuyItem()
         {
             updateCurrency();
-            if (_itemPrice <= _currentCoins)
+            if (_itemPrice <= _currentCoins && _itemQuantity > 0)
             {
                 InventoryManager.Instance.AddToInventory(shopItem.GetItem());
                 _itemQuantity--;
@@ -38,7 +38,12 @@ namespace Shop
         public void SellItem()
         {
             updateCurrency();
-
+            if (InventoryManager.Instance.GetInventory().Contains(shopItem.GetItem()))
+            {
+                InventoryManager.Instance.RemoveFromInventory(shopItem.GetItem());
+                _currentCoins += _itemPrice;
+                SetValues();
+            }
         }
    
 

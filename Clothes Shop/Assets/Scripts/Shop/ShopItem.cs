@@ -41,6 +41,7 @@ namespace Shop
         public void SetItemQuantity(int q)
         {
             itemQuantity = q.ToString();
+            itemName.text = itemSO.itemName + " Qt: " + itemQuantity;
         }
 
         public ItemSO GetItem()
