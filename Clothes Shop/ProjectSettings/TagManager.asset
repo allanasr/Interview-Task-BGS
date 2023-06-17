@@ -13,6 +13,8 @@ TagManager:
   - InteractablePopUp
   - ShopCoinCounter
   - ShopDiamondCounter
+  - HOOD
+  - TORSO
   layers:
   - Default
   - TransparentFX

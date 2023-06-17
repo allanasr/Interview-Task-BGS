@@ -11,7 +11,10 @@ namespace Inventory
     {
         [SerializeField] List<ItemSO> items = new List<ItemSO>();
 
-        [SerializeField] List<Transform> inventorySlots = new List<Transform>();
+        [SerializeField] List<RectTransform> inventorySlots = new List<RectTransform>();
+
+        [SerializeField] GameObject inventoryObjectPrefab;
+
 
         public void AddToInventory(ItemSO item)
         {
@@ -21,19 +24,31 @@ namespace Inventory
         public void RemoveFromInventory(ItemSO item)
         {
             if (items.Contains(item))
+            {
                 items.Remove(item);
+            }
+
         }
 
         public void ShowItems()
         {
+            foreach (var i in inventorySlots)
+            {
+                if (i.childCount > 0)
+                {
+                    Transform child = i.GetChild(0);
+                    Destroy(child.gameObject);
+                }
+            }
+
             var index = 0;
             foreach(var i in items)
             {
-                var g = new GameObject();
-                g.AddComponent<Image>().sprite = i.itemIcon;
+                var g = Instantiate(inventoryObjectPrefab, inventorySlots[index]);
                 g.name = i.itemName;
+                g.GetComponent<Image>().sprite = i.itemIcon;
+                g.layer = 5;
                 g.transform.localScale = new Vector2(0.7f, 0.7f);
-                Instantiate(g, inventorySlots[index]);
                 index++;
             }
         }
@@ -41,6 +56,11 @@ namespace Inventory
         public List<ItemSO> GetInventory()
         {
             return items;
+        }
+
+        public ItemSO GetInventoryItem(string name)
+        {
+            return items.Find(i => i.itemName == name);
         }
     }
 

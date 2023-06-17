@@ -5,6 +5,14 @@ using UnityEngine;
 
 namespace Item
 {
+
+    public enum ItemBodyPart
+    { 
+        HOOD,
+        TORSO
+    }
+
+
     [CreateAssetMenu(fileName = "Item")]
     public class ItemSO : ScriptableObject
     {
@@ -12,5 +20,6 @@ namespace Item
         public string itemQuantity;
         public string itemPrice;
         public Sprite itemIcon;
+        public ItemBodyPart itemBodyPart;
     }
 }
