@@ -4,6 +4,8 @@ using UnityEngine;
 using Singleton;
 using Item;
 using UnityEngine.UI;
+using TMPro;
+using Currency;
 
 namespace Inventory
 {
@@ -15,10 +17,11 @@ namespace Inventory
 
         [SerializeField] GameObject inventoryObjectPrefab;
 
-
+        // Add Item to inventory if not full, if it is full, show panel with the message
         public void AddToInventory(ItemSO item)
         {
             items.Add(item);
+            ShowItems();
         }
 
         public void RemoveFromInventory(ItemSO item)
@@ -27,9 +30,10 @@ namespace Inventory
             {
                 items.Remove(item);
             }
-
+            ShowItems();
         }
 
+        // First it clears the inventory slots, then, populates it with the items in the inventory
         public void ShowItems()
         {
             foreach (var i in inventorySlots)
@@ -42,7 +46,7 @@ namespace Inventory
             }
 
             var index = 0;
-            foreach(var i in items)
+            foreach (var i in items)
             {
                 var g = Instantiate(inventoryObjectPrefab, inventorySlots[index]);
                 g.name = i.itemName;
@@ -62,6 +66,7 @@ namespace Inventory
         {
             return items.Find(i => i.itemName == name);
         }
+
     }
 
 }

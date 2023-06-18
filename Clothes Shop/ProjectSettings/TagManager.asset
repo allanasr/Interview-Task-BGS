@@ -15,6 +15,11 @@ TagManager:
   - ShopDiamondCounter
   - HOOD
   - TORSO
+  - PlayerGameObject
+  - PELVIS
+  - WEAPON
+  - MoneyPanel
+  - PanelTxt
   layers:
   - Default
   - TransparentFX

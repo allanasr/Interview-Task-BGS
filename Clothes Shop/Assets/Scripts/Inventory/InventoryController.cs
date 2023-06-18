@@ -16,23 +16,16 @@ namespace Inventory
 
         [SerializeField] ItemSO item;
         [SerializeField] GameObject bodyPart;
-        void Start()
-        {
-            Debug.Log("oi");
-        }
 
-        void Update()
-        {
-            
-        }
+        // Gets the object the player is clicking and then change the player sprite to match the icon
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("oi2");
             _selectedObject = eventData.pointerPress;
             item = InventoryManager.Instance.GetInventoryItem(_selectedObject.name);
             _bodyPartType = item.itemBodyPart;
             bodyPart = GameObject.FindGameObjectWithTag(_bodyPartType.ToString());
             bodyPart.GetComponent<SpriteRenderer>().sprite = item.itemIcon;
+            InventoryManager.Instance.RemoveFromInventory(item);
         }
     }
 }

@@ -9,7 +9,9 @@ namespace Item
     public enum ItemBodyPart
     { 
         HOOD,
-        TORSO
+        TORSO,
+        WEAPON,
+        PELVIS
     }
 
 

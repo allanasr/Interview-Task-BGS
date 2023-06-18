@@ -21,12 +21,14 @@ namespace Shop
             SetValues();
         }
 
-
+        // Get values from the manager
         public void GetValues()
         {
             _currentCoins = CurrencyManager.Instance.GetCoinAmount();
             _currentDiamonds = CurrencyManager.Instance.GetDiamondAmount();
         }
+        
+        // Sets new values for the manager
         public void SetValues()
         {
             CurrencyManager.Instance.SetCoinCounter(_currentCoins);

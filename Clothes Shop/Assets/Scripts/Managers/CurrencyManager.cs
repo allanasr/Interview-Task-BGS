@@ -15,6 +15,9 @@ namespace Currency
         [SerializeField] TMP_Text diamondCounterTxt;
         [SerializeField] TMP_Text shopDiamondCounterTxt;
 
+        [SerializeField] GameObject noMoneyPanel;
+        [SerializeField] TMP_Text panelTxt;
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,6 +25,10 @@ namespace Currency
             shopCoinCounterTxt = GameObject.FindGameObjectWithTag("ShopCoinCounter").GetComponent<TMP_Text>();
             diamondCounterTxt = GameObject.FindGameObjectWithTag("DiamondCounter").GetComponent<TMP_Text>();
             shopDiamondCounterTxt = GameObject.FindGameObjectWithTag("ShopDiamondCounter").GetComponent<TMP_Text>();
+            panelTxt = GameObject.FindGameObjectWithTag("PanelTxt").GetComponent<TMP_Text>();
+            noMoneyPanel = GameObject.FindGameObjectWithTag("MoneyPanel");
+            ClosePanel();
+
         }
 
         public void AddCollectable(string tag)
@@ -58,5 +65,18 @@ namespace Currency
             coinCounter = value;
             UpdateCounter();
         }
+
+        public void ClosePanel()
+        {
+            noMoneyPanel.SetActive(false);
+        }
+
+        public void ShowPanel(string s)
+        {
+            panelTxt.text = s;
+            noMoneyPanel.SetActive(true);
+        }
+
+
     }
 }

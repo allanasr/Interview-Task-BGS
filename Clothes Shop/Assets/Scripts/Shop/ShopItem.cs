@@ -14,6 +14,7 @@ namespace Shop
 
         [SerializeField] Sprite itemSprite;
         [SerializeField] string itemQuantity;
+        [SerializeField] TMP_Text itemPrice;
         [SerializeField] TMP_Text itemName;
 
         void Awake()
@@ -23,6 +24,7 @@ namespace Shop
 
             itemQuantity = itemSO.itemQuantity;
             itemSprite = itemSO.itemIcon;
+            itemPrice.text = itemSO.itemPrice;
             itemName.text = itemSO.itemName + " Qt: " + itemQuantity;
             GetComponentInChildren<Image>().sprite = itemSprite; 
         }

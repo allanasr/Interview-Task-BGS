@@ -11,14 +11,20 @@ namespace Player
     {
         public GameObject buttonPopUp;
         public string[] tagsToLook;
+        [SerializeField] bool canInteract = false;
 
+        [Header("Audio")]
+        [SerializeField] AudioSource audioSource;
+       
         [Header("Animation")] 
         public float animationDuration = 1f;
         public Ease inEase;
         public Ease outEase;
 
-        [SerializeField] bool canInteract = false;
-
+        private void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         private void OnTriggerEnter2D(Collider2D collision)
         {
             foreach (var t in tagsToLook)
@@ -62,7 +68,10 @@ namespace Player
         private void Update()
         {
             if (canInteract && Input.GetKeyDown(KeyCode.E))
+            {
                 ShopManager.Instance.ShowShop();
+                audioSource.Play();
+            }
         }
     }
 
